@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Pi-Apps homepage</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="oxmc.github.io/Pi-Apps.info" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Pi-Apps website to download and view the progress of the best pi appstore!" />
+<meta property="og:description" content="Pi-Apps website to download and view the progress of the best pi appstore!" />
+<link rel="canonical" href="https://oxmc.github.io/Pi-Apps.info" />
+<meta property="og:url" content="https://oxmc.github.io/Pi-Apps.info" />
+<meta property="og:site_name" content="Pi-Apps.info" />
+<link rel="icon" type="image/png" href="/images/usericon.png">
+<script type="application/ld+json">
+{"@type":"WebSite","headline":"Pi-Apps.info","url":"https://oxmc.github.io/Pi-Apps.info","description":"Pi-Apps website to download and view the progress of the best pi appstore!","name":"Pi-Apps website","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/assets/css/style.css?v=51a255c0822bccea2af39531718d741610ae429f">
+    <link rel="icon" type="image/png" href="https://oxmc.github.io/Pi-Apps.info/images/Logo.png">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Pi-Apps</h1>
+      <h2 class="project-tagline">The best pi appstore!</h2>
+      
+      
+    </section>
+
+    <section class="main-content">
+
+<hr />
+
+<div class="center">
+<h1 class="center">Downloads</h1>
+  <a href="https://github.com/Botspot/pi-apps">
+  <button onclick="Download(1)" id="dnlbtn" class="button2" style="width:30%"><i class="fa fa-download"></i> Download Pi-Apps </button>
+  </a>
+  <!--  <a href="https://oxmc.github.io/Pi-Apps.info/files/Pi-Apps_install.sh" download>
+    <button onclick="Download(1)" id="dnlbtn" class="button2" style="width:30%"><i class="fa fa-download"></i> Download Pi-Apps </button>
+    </a>
+    <button onclick="Download(2)" class="button2" style="width:30%"><i class="fa fa-download"></i> Download Pi-Apps Custom </button> -->
+
+    <script>
+      var downloadbtn=document.getElementById("dnlbtn")
+      
+      #downloadbtn.addEventListener("click", downloadpiapps);
+      downloadbtn.addEventListener("click", Download("1"));
+
+      function downloadpiapps() {
+        downloadbutton.innerHTML = "github.com/Botspot/Pi-Apps";
+      }
+      
+      function Download(id) {
+        if (id = "1") {
+          downloadbtn.innerHTML = "Loading"
+          downloadbtn.style.property = "fa fa-spinner fa-spin"
+          window.location.href = 'https://oxmc.github.io/Pi-Apps.info/files/Pi-AppsTerm_install.sh'; //This will download the current Pi-Apps installation script.
+        } elseif (id = "2") {
+          window.location.href = 'https://oxmc.github.io/Pi-Apps.info/Pi-Apps_Custom.html'; //This will redirect to Pi-Apps_Custom.html
+        } else {
+          window.alert("Download id incorrect")
+        }
+    </script>
+      <h1 class="center">
+        <p>What do others say about Pi-Apps?</p>
+      <div class="c d2 round2 sec2" style="display: inline-block;">
+        <p><a href="https://m.youtube.com/watch?v=oqNWJ52DLes">ETA Prime</a> (the most famous RPi YouTuber) says:
+        "It's an awesome Raspberry Pi app store and it works really well and there's lots of great stuff in here and it's super easy to install. I want to give the devs of Pi-Apps a big shout-out."</p>
+        <p>"Awesome. Thanks for doing this." - Novaspirit Tech</p>
+        <p>"It definitely looks really cool. Thanks so much to Botspot for creating this; it's a great program." - leepspvideo</p>
+        <p>"I love pi-apps. It's great and installs tons of useful software that people don't know how to install. Great work Botspot!" - Raspberry Pi Projects and More</p>
+        <p>"Pi-Apps is the reason I got a Pi4!" - behjemen from Discord</p>
+        <p>"Thanks for the great work making it all simple for everybody." - ShiftPlusOne (RPi moderator)</p>
+        <p>"Good luck with your projects, Botspot, you're really making waves!" - Sakaki</p>
+        <p>"I love Pi-Apps and I chase all my friends around tryna get them to install it" - Beiop from Discord</p>
+       </div>
+        <p>Credits:</p>
+        <div class="c d2 round2 sec2" style="display: inline-block;">
+        <p>Creator: Botspot</p>
+        <p>Website: oxmc</p>
+        <p>Discord server: <a href="https://discord.gg/RXSTvaUvuu">Join server</a></p>
+       </h1>
+       </div>
+</div>
