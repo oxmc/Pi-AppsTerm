@@ -2,7 +2,8 @@
 
 #Variables
 
-message="Thanks to Itai, and beiop on discord for helping me fix install errors!"
+message="Thanks to Itai, beiop, and Botspot on discord for helping me fix install errors!"
+message2="Thanks to Botspot for making pi-apps!"
 
 #Functions
 function error {
@@ -12,19 +13,21 @@ function error {
 
 #Main
 echo "${message}"
+echo "${message2}"
 sudo apt install git || error "Unable to install git!"
 if [ -d "/usr/local/bin/Pi-AppsTerm" ];then
   echo "Pi-AppsTerm is already installed! skipping..."
 else
-  git clone https://github.com/oxmc/Pi-Apps.info.git || error "Unable to download Pi-AppsTerm!"
+  echo "Pi-AppsTerm is not installed! installing..."
+  git clone https://github.com/oxmc/Pi-AppsTerm.git || error "Unable to download Pi-AppsTerm!"
 fi
-cd ~
-if [ -d "pi-apps" ];then
+if [ -d "~/pi-apps" ];then
   echo "Pi-Apps is already installed! skipping..."
 else
+  echo "Pi-Apps is not installed! Pi-AppsTerm requires this to be installed! installing..."
   git clone https://github.com/Botspot/pi-apps.git || error "Unable to download pi-apps!"
 fi
-sudo mv Pi-Apps.info /usr/local/bin/Pi-AppsTerm || error "Unable to move folder to /usr/local/bin!"
+sudo mv Pi-AppsTerm /usr/local/bin/Pi-AppsTerm || error "Unable to move folder to /usr/local/bin!"
 cd /usr/local/bin/Pi-AppsTerm || error "Unable to change directiry to Pi-AppsTerm!"
 sudo chmod +x *.* || error "Unable to change executable permissons!"
 sudo cp /usr/local/bin/Pi-AppsTerm/files/Pi-AppsTerm /usr/local/bin/pi-apps || error "Unable to add pi-apps to terminal!"
