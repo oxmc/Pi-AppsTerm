@@ -67,11 +67,6 @@ if [ $# == "2" ];then
       if [ -d "$workdir/apps/$AppName" ];then
         bash $workdir/apps/$AppName/uninstall || error "Unable to run uninstall script for ${AppName}!"
       fi
-  elif [ $Mode == "version" ];then
-      echo "latest pi-apps version: $LATEST_VER"
-      echo "local pi-apps version: $LOCAL_VER"
-      exit 0
-  fi
 elif [ $# == "1" ];then
     if [ $Mode == "help" ];then
       echo "To install programs type 'pi-apps install nameofapp', example 'pi-apps install All Is Well' this will install the All Is Well app"    
@@ -82,6 +77,11 @@ elif [ $# == "1" ];then
     else
       error "Unkown mode given, for help type 'pi-apps help'"
     fi
+elif [ $Mode == "version" ];then
+    echo "latest pi-apps version: $LATEST_VER"
+    echo "local pi-apps version: $LOCAL_VER"
+    exit 0
+  fi
 else
   error "Invalid amounts of arguments recived, please use 'pi-apps <Mode> <AppName>' to use this program correctly, if you need help please type 'pi-apps help'"
 fi
