@@ -1,4 +1,4 @@
-# Pi-Apps.info
+# Pi-AppsTerm
 This site also holds Pi-AppsTerm
 To install it open terminal and type
 
