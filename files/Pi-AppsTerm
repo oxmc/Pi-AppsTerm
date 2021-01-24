@@ -41,13 +41,8 @@ if [ $# == "2" ];then
   elif [ $Mode == "install" ];then
       if [ -d "$workdir/apps/$AppName" ]; then
         echo "Installing ${AppName}"
-        if [ -f "$workdir/apps/$AppName/install-32" ];then
-          bash $workdir/apps/$AppName/install-32 || error "Unable to install $AppName!"
-        elif [ -f "$workdir/apps/$AppName/install-64" ];then
-            bash $workdir/apps/$AppName/install-64 || error "Unable to install $AppName!"
-        else
-          bash $workdir/apps/$AppName/install || error "Unable to install $AppName!"
-          echo "Installed ${AppName} on ${todaydate}" >> $InstallLogs || error "Unable to log install date for $AppName!"
+        bash $workdir/manage install $AppName
+        echo "Installed ${AppName} on ${todaydate}" >> $InstallLogs || error "Unable to log install date for $AppName!"
         fi
       else
         error "Unkown appname '$2'! Please make sure to spell it correctly!"
