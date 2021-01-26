@@ -1,0 +1,59 @@
+#!/bin/bash
+DIRECTORY="$(dirname $0)"
+#variable 1 is a space-seperated list of packages
+
+#Error function
+function error {
+  echo -e "\e[91m$1\e[39m"
+  exit 1
+}
+
+NUM_PKGS=$(echo "$1" | wc -w)
+#echo "$NUM_PKGS"
+#repeat for each package listed
+i=1
+while [ $i -le "$NUM_PKGS" ]; do
+  REQ_PKG="$(echo $1 | cut -d " " -f $i)"
+  #echo "$REQ_PKG"
+  
+  PKG_OK=$(dpkg-query -W --showformat='${Status}\n' "$REQ_PKG"|grep "install ok installed")
+  if [ "" == "$PKG_OK" ]; then
+    PKG_LIST="${PKG_LIST} ${REQ_PKG}" #add package to install list
+  fi
+  #echo $i
+  PKG_LIST="$(echo "$PKG_LIST" | sed -e 's/^ //g')"
+  i=$((i+1))
+done
+
+#list created that only has packages not installed
+#remove spaces
+
+echo "To be installed: ${PKG_LIST}"
+
+#if blank or contains only spaces
+if [ ! -z "$PKG_LIST" ];then
+
+#has newline chars to display properly
+package_list="$(echo "$PKG_LIST" | tr ' ' '\n')"
+
+echo -e "These packages are required but not installed.   \n Install them now?"
+read a
+if [ a == "y" ];then
+
+  echo $PKG_LIST > ${DIRECTORY}/installedpackages
+  x-terminal-emulator --title="Installing packages" -e "sudo apt install -y $PKG_LIST;echo -e '\nInstallation finished.\nClosing in 5 seconds.';sleep 5"
+  if [ ! $? -eq 0 ];then #if apt exits with error
+    echo -e "Could not install the packages!\nTry installing them yourself by running this in the terminal:\nsudo apt install $PGK_LIST"
+    exit 1
+  fi
+else
+  error "User declined install.. exiting"
+fi
+sleep 1
+#wait until apt process finishes
+while ps -C apt,dpkg >/dev/null;do
+  sleep 1
+done
+fi
+#all of the above is skipped if there are no new packages to install.
+echo "All packages are installed."

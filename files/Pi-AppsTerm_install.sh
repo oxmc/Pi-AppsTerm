@@ -14,7 +14,7 @@ function error {
 #Main
 echo "${message}"
 echo "${message2}"
-sudo apt install git || error "Unable to install git!"
+bash ~/Pi-AppsTerm/files/checkinstalledpackages "git"
 if [ -d "/usr/local/bin/Pi-AppsTerm" ];then
   echo "Pi-AppsTerm is not installed! installing..."
   git clone https://github.com/oxmc/Pi-AppsTerm.git || error "Unable to download Pi-AppsTerm!"
