@@ -18,7 +18,7 @@ if [ -d "/usr/local/bin/Pi-AppsTerm" ];then
   echo "Pi-AppsTerm is already installed, but i will remove it to ensure it is the latest version."
   rm -rf ~/Pi-AppsTerm
   echo "Re-installing Pi-AppsTerm..."
-  wget -O - https://oxmc.github.io/Pi-Apps.info/files/Pi-AppsTerm_install.sh | bash
+  wget -O - https://oxmc.github.io/Pi-Apps.info/files/Pi-AppsTerm_install.sh | bash || error "Unable to download Pi-AppsTerm!"
 else
   echo "Pi-AppsTerm is not installed! installing..."
   git clone https://github.com/oxmc/Pi-AppsTerm.git || error "Unable to download Pi-AppsTerm!"
