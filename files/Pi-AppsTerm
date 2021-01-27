@@ -59,9 +59,7 @@ if [ $# == "2" ];then
           bash $workdir/uninstall || error "Unable to run uninstall file!"
         fi
       fi
-      if [ -d "$workdir/apps/$AppName" ];then
-        bash $workdir/apps/$AppName/uninstall || error "Unable to run uninstall script for ${AppName}!"
-      fi
+      bash $workdir/manage uninstall $AppName || error "Unable to run uninstall script for ${AppName}!"
 elif [ $# == "1" ];then
     if [ $Mode == "help" ];then
       echo "To install programs type 'pi-apps install nameofapp', example 'pi-apps install All Is Well' this will install the All Is Well app"    
