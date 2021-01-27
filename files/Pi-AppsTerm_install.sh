@@ -1,7 +1,6 @@
 #! /bin/bash
 
 #Variables
-
 message="Thanks to Itai, beiop, and Botspot on discord for helping me fix install errors!"
 message2="Thanks to Botspot for making pi-apps!"
 
@@ -16,16 +15,16 @@ echo "${message}"
 echo "${message2}"
 bash ~/Pi-AppsTerm/files/checkinstalledpackages "git"
 if [ -d "/usr/local/bin/Pi-AppsTerm" ];then
+  echo "Pi-AppsTerm is already installed! skipping..."
+else
   echo "Pi-AppsTerm is not installed! installing..."
   git clone https://github.com/oxmc/Pi-AppsTerm.git || error "Unable to download Pi-AppsTerm!"
-else
-  echo "Pi-AppsTerm is already installed! skipping..."
 fi
 if [ -d "~/pi-apps" ];then
-  echo "Pi-Apps is not installed! Pi-AppsTerm requires this to be installed! installing..."
-  git clone https://github.com/Botspot/pi-apps.git || error "Unable to download pi-apps!"  
-else
   echo "Pi-Apps is already installed! skipping..."
+else
+  echo "Pi-Apps is not installed! Pi-AppsTerm requires this to be installed! installing..."
+  git clone https://github.com/Botspot/pi-apps.git || error "Unable to download Pi-Apps!"
 fi
 sudo mv Pi-AppsTerm /usr/local/bin/Pi-AppsTerm || error "Unable to move folder to /usr/local/bin!"
 cd /usr/local/bin/Pi-AppsTerm || error "Unable to change directiry to Pi-AppsTerm!"
