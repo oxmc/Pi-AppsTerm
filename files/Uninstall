@@ -1,0 +1,65 @@
+#! /bin/bash
+
+#Variables
+workdir="~/pi-apps"
+homedir="/usr/local/bin/Pi-AppsTerm"
+todaydate="$(date +"%A,%B,%d,%Y")"
+LATEST_VER="$(wget -qO- https://oxmc.github.io/Pi-Apps.info/data/appversion.txt)"
+LOCAL_VER="$(cat "${homedir}/data/appversion.txt")"
+Botspot="https://github.com/Botspot/pi-apps"
+oxmc="https://github.io/oxmc/Pi-Apps.info"
+InstallLogs="$homedir/installed.txt"
+
+#Functions
+function error {
+  echo -e "\e[91m$1\e[39m"
+  exit 1
+}
+
+#Main
+echo "Are you sure you want to uninstall Pi-Apps and Pi-AppsTerm? y/n or c for custom uninstall"
+read a
+if [ $a == "y" ];then
+  echo "Uninstalling both Pi-Apps and Pi-AppsTerm..."
+  bash $workdir/uninstall || error "Unable to run uninstall script for Pi-Apps!"
+  bash $homedir/uninstall || error "Unable to run uninstall script for Pi-AppsTerm!"
+elif [ a == "c" ];then
+  echo "Custom uninstall"
+  echo "Do you want to uninstall pi-apps?"
+  read b
+  if [ $b == "y" ];then
+    pi-apps = 1
+  else
+    pi-apps = 0
+  fi
+  echo "Do you want to uninstall Pi-AppsTerm"
+  read c
+  if [ $c == "y" ];then
+    pi-appsterm = 1
+  else
+    pi-appsterm = 0
+  fi
+  echo "Running custom uninstall..."
+  if [ pi-apps == 1 ] && [ pi-appsterm == 1 ];then
+    echo "Uninstalling both Pi-Apps and Pi-AppsTerm..."
+    bash $workdir/uninstall || error "Unable to run uninstall script for Pi-Apps!"
+    bash $homedir/uninstall || error "Unable to run uninstall script for Pi-AppsTerm!"
+  elif [ pi-apps == 0 ] && [ pi-appsterm == 1 ];then
+    echo "Uninstalling Pi-AppsTerm..."
+    bash $homedir/uninstall || error "Unable to run uninstall script for Pi-AppsTerm!"
+  elif [ pi-apps == 1 ] && [ pi-appsterm == 0 ];then
+    echo "Uninstalling Pi-Apps..."
+    bash $workdir/uninstall || error "Unable to run uninstall script for Pi-Apps!"
+  elif [ pi-apps == 0 ] && [ pi-appsterm == 0 ];then
+    echo "Uninstalling none"
+    echo "Cancelling..."
+    exit 0
+  else
+    error "Unkown error ucured!"
+  fi
+elif [ $a == "n" ];then
+  echo "Canceling..."
+  exit 0
+else
+  error "Unkown input '$a', only y, n, and c are usable. Exiting..."
+fi
