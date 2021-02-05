@@ -14,7 +14,7 @@ function error {
 echo "${message}"
 echo "${message2}"
 bash ~/Pi-AppsTerm/files/checkpackages "git"
-if [ ! -d "/usr/local/bin/Pi-AppsTerm" ];then
+if [ -d "/usr/local/bin/Pi-AppsTerm" ];then
   echo "Pi-AppsTerm is already installed! skipping..."
 else
   echo "Pi-AppsTerm is not installed! installing..."
