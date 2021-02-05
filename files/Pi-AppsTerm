@@ -9,7 +9,7 @@ LOCAL_VER="$(cat "${homedir}/data/appversion.txt")"
 Mode=$1
 NameOfApp=$2
 Botspot="https://github.com/Botspot/pi-apps"
-oxmc="https://github.io/oxmc/Pi-Apps.info"
+oxmc="https://github.io/oxmc/Pi-AppsTerm"
 InstallLogs="$homedir/installed.txt"
 
 #Functions
@@ -42,7 +42,7 @@ if [ $# == "2" ];then
       if [ -d "$workdir/apps/$AppName" ]; then
         echo "Installing ${AppName}"
         bash $workdir/manage install $AppName
-        echo "Installed ${AppName} on ${todaydate}" >> $InstallLogs || error "Unable to log install date for $AppName!"
+        echo "Installed ${AppName} on ${todaydate}" >> $InstallLogs || echo -e "\e[91mUnable to log install date for $AppName!\e[39m"
         fi
       else
         error "Unkown appname '$2'! Please make sure to spell it correctly!"
@@ -62,13 +62,13 @@ if [ $# == "2" ];then
       bash $workdir/manage uninstall $AppName || error "Unable to run uninstall script for ${AppName}!"
 elif [ $# == "1" ];then
     if [ $Mode == "help" ];then
-      echo "To install programs type 'pi-apps install nameofapp', example 'pi-apps install All Is Well' this will install the All Is Well app"    
-      echo "To update pi-apps type 'pi-apps update' this will check if pi-apps is up to date"
-      echo "To uninstall an app type 'pi-apps uninstall nameofapp' this will uninstall the app specified, example 'pi-apps uninstall All Is Well' this will uninstall the All Is Well app"  
-      echo "To check the current version of pi-apps type 'pi-apps version', this will tell you the current verion of pi-apps i.e beta, 1.9, 2.0"
+      echo "To install programs type 'pat install nameofapp', example 'pat install All Is Well' this will install the All Is Well app"    
+      echo "To update pi-apps type 'pat update' this will check if pat is up to date"
+      echo "To uninstall an app type 'pat uninstall nameofapp' this will uninstall the app specified, example 'pat uninstall All Is Well' this will uninstall the All Is Well app"  
+      echo "To check the current version of pi-apps type 'pat version', this will tell you the current verion of pi-apps i.e beta, 1.9, 2.0"
       exit 0
     else
-      error "Unkown mode given, for help type 'pi-apps help'"
+      error "Unkown mode given, for help type 'pat help'"
     fi
 elif [ $Mode == "version" ];then
     echo "latest pi-apps version: $LATEST_VER"
@@ -76,5 +76,5 @@ elif [ $Mode == "version" ];then
     exit 0
   fi
 else
-  error "Invalid amounts of arguments recived, please use 'pi-apps <Mode> <AppName>' to use this program correctly, if you need help please type 'pi-apps help'"
+  error "Invalid amounts of arguments recived, please use 'pat <Mode> <AppName>' to use this program correctly, if you need help please type 'pat help'"
 fi
