@@ -67,13 +67,13 @@ elif [ $# == "1" ];then
       echo "To uninstall an app type 'pat uninstall nameofapp' this will uninstall the app specified, example 'pat uninstall All Is Well' this will uninstall the All Is Well app"  
       echo "To check the current version of pi-apps type 'pat version', this will tell you the current verion of pi-apps i.e beta, 1.9, 2.0"
       exit 0
+    elif [ $Mode == "version" ];then
+      echo "latest pi-apps version: $LATEST_VER"
+      echo "local pi-apps version: $LOCAL_VER"
+      exit 0
     else
       error "Unkown mode given, for help type 'pat help'"
     fi
-elif [ $Mode == "version" ];then
-    echo "latest pi-apps version: $LATEST_VER"
-    echo "local pi-apps version: $LOCAL_VER"
-    exit 0
   fi
 else
   error "Invalid amounts of arguments recived, please use 'pat <Mode> <AppName>' to use this program correctly, if you need help please type 'pat help'"
